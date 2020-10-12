@@ -10,3 +10,22 @@ services:
       - MYSQL_USER=example_user
       - MYSQL_PASSWORD=examplepassword
 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile      
+    image: nodejs-app:latest
+    env_file: .env
+    environment:
+      - SERVER_TEXT=$SERVER_TEXT
+      - SERVER_PORT=$SERVER_PORT
+      - DB_ADDRESS=db
+      - DB_PORT=$DB_PORT
+      - DB_NAME=$DB_NAME
+      - DB_USERNAME=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+    #volumes:
+      #- './:/usr/src/app'
+    #working_dir: /usr/src/app
+    ports:
+      - '3000:3000'
