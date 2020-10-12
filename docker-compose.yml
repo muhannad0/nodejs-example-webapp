@@ -1,0 +1,12 @@
+version: '2.4'
+
+services:
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysqlrootpassword
+      - MYSQL_DATABASE=example_db
+      - MYSQL_USER=example_user
+      - MYSQL_PASSWORD=examplepassword
+
