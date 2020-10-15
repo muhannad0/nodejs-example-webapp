@@ -15,7 +15,12 @@ var connection;
 var db_conn_msg_fail = '<span style="color:red;">FAIL</span>';
 var db_conn_msg_success = '<span style="color:green;">PASS</span>';
 
-function reconnect(){
+function reconnect(retry = 10){
+  if (retry <1 ) {
+    console.log('Retry limit exceeded');
+    return;
+  }
+
   console.log('Connecting to database');
 
   // Destroy existing connection since it cannot be re-used
@@ -25,7 +30,11 @@ function reconnect(){
   connection.connect((err) => {
     if (err) {
       console.log('Error connecting to database: ' + err.code);
-      setTimeout(reconnect, 2000);
+      //setTimeout(reconnect, 2000);
+      setTimeout(() => {
+        //console.log('Retry left: ' + retry);
+        reconnect(retry-1);
+      }, 2000);
     } else {
       console.log('Connected to database');
       //return connection;
