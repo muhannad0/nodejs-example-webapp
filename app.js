@@ -15,7 +15,7 @@ var connection;
 var db_conn_msg_fail = '<span style="color:red;">FAIL</span>';
 var db_conn_msg_success = '<span style="color:green;">PASS</span>';
 
-function reconnect(retry = 10){
+function reconnect(retry = 150){
   if (retry <1 ) {
     console.log('Retry limit exceeded');
     return;
